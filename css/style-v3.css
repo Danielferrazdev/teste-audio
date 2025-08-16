@@ -1,0 +1,90 @@
+/* ===== Reset Moderno ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Tipografia ===== */
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  color: #2d2d2d;
+  background: #fafafa;
+  line-height: 1.8;
+}
+
+/* ===== Cores Modernas ===== */
+:root {
+  --primary-color: #2563eb;   /* Azul vibrante (moderno) */
+  --secondary-color: #10b981; /* Verde suave */
+  --accent-color: #facc15;    /* Amarelo suave para detalhes */
+  --text-color: #1f2937;
+  --bg-color: #fafafa;
+}
+
+/* ===== Cabeçalho com sombra suave ===== */
+header {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* ===== Links minimalistas ===== */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: var(--secondary-color);
+  transition: width 0.3s;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* ===== Botões modernos ===== */
+button, .btn {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover, .btn:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* ===== Rodapé clean ===== */
+footer {
+  background: #fff;
+  color: var(--text-color);
+  padding: 1.2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid #e5e7eb;
+}

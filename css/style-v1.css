@@ -1,3 +1,4 @@
+/*
 /* Reset básico para remover margens e espaçamentos padrões do navegador */
 * {
   margin: 0;
@@ -5,54 +6,59 @@
   box-sizing: border-box; /* Inclui borda e padding no cálculo do tamanho */
 }
 
+/* Importando a fonte outfit */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 /* Corpo da página */
 body {
-  font-family: Arial, Helvetica, sans-serif; /* Fonte limpa e fácil de ler */
-  background-color: #f5f5f5; /* Cor de fundo suave */
-  color: #333; /* Texto em tom cinza escuro para melhor leitura */
+  font-family: Outfif, Arial, Helvetica, sans-serif; /* Fonte limpa e fácil de ler */
+  background-color: var(--body-color); /* Cor de fundo suave */
+  color: var(--text-color); /* Texto em tom cinza escuro para melhor leitura */
   line-height: 1.6; /* Espaçamento entre linhas para leitura confortável */
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Faz o body ocupar toda a altura da tela */
 }
 
+/* padrão de cor */
+:root {
+  --primary-color: #5c56a8;   /* Azul forte */
+  --secondary-color: #01bdb2; /* Verde de destaque */
+  --text-color: #333;
+  --bg-color: #ffffff;
+  --body-color: #f5f5f5;
+}
+
 /* Cabeçalho */
 header {
-  background-color: #0078d4; /* Azul inspirado no Philips */
-  color: white; /* Texto branco */
+  background-color: var(--b); /* Azul inspirado no Philips */
+  color: var(--secondary-color); /* Texto branco */
   padding: 1rem 2rem; /* Espaçamento interno */
 }
 
 /* Título no cabeçalho */
-header h1 {
-  font-size: 1.8rem;
+div {
+  background: var(--bg-color);
+  
+}
+
+/* Tamanho da logo */
+.logo img {
+  height: 50px; /* ajusta conforme sua logo */
+  width: auto;
+}
+
+h1 {
+  background: var(--primary-color);
+  color: var(--secondary-color); /* Azul padrão site */
   margin-bottom: 0.5rem;
 }
-
-/* Navegação */
-nav ul {
-  list-style: none; /* Remove marcadores da lista */
-  display: flex; /* Coloca os links lado a lado */
-  gap: 1rem; /* Espaço entre os itens */
-}
-
-nav a {
-  color: white; /* Links brancos */
-  text-decoration: none; /* Remove sublinhado */
-  font-weight: bold;
-  transition: color 0.3s ease; /* Animação suave ao passar o mouse */
-}
-
-nav a:hover {
-  color: #cce7ff; /* Azul claro no hover */
-}
-
 /* Conteúdo principal */
 main {
   flex: 1; /* Faz o main crescer para ocupar o espaço livre */
   max-width: 800px; /* Limita a largura */
   margin: 2rem auto; /* Centraliza na tela */
-  background: white; /* Fundo branco */
+  background: var(--bg-color); /* Fundo branco */
   padding: 2rem; /* Espaçamento interno */
   border-radius: 8px; /* Bordas arredondadas */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -61,7 +67,7 @@ main {
 
 /* Títulos dentro do main */
 main h2, main h3 {
-  color: #0078d4; /* Azul Philips */
+  color: var(--primary-color); /* Azul padrão site */
   margin-bottom: 0.5rem;
 }
 
@@ -82,8 +88,8 @@ main li {
 
 /* Botão iniciar teste */
 #start-test {
-  background-color: #0078d4; /* Azul Philips */
-  color: white;
+  background-color: var(--secondary-color); /* verde padrão site */
+  color: var(--bg-color);
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -93,13 +99,13 @@ main li {
 }
 
 #start-test:hover {
-  background-color: #005fa3; /* Azul mais escuro no hover */
+  background-color: var(--primary-color); /* Azul mais escuro no hover */
 }
 
 /* Rodapé */
 footer {
-  background-color: #0078d4;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
@@ -107,10 +113,7 @@ footer {
 
 /* Responsividade para telas menores */
 @media (max-width: 600px) {
-  nav ul {
-    flex-direction: column; /* Links em coluna no mobile */
-    gap: 0.5rem;
-  }
+ 
 
   main {
     margin: 1rem;
