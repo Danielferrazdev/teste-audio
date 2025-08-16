@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionário de Preparação</title>
+  <link rel="stylesheet" href="css/style-v2.css">
+</head>
+<body>
+  <header>
+    <h1>Questionário de Preparação</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Antes do teste</h2>
+      <p>Responda algumas perguntas rápidas para preparar o teste.</p>
+
+      <form id="prep-form">
+        <label>
+          Idade:
+          <input type="number" name="age" min="1" max="120" required>
+        </label>
+        <br><br>
+
+        <label>
+          Você usa aparelhos auditivos?
+          <select name="hearing-aid" required>
+            <option value="">Selecione</option>
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+          </select>
+        </label>
+        <br><br>
+
+        <label>
+          Você está em um ambiente silencioso?
+          <select name="quiet-place" required>
+            <option value="">Selecione</option>
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+          </select>
+        </label>
+        <br><br>
+
+        <button type="submit">Iniciar Teste de Audição</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Teste de Audição Online</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('prep-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita o reload da página
+      // Aqui podemos validar ou armazenar respostas se quisermos
+      window.location.href = 'hearing-test.html'; // Vai para o teste de audição
+    });
+  </script>
+</body>
+</html>

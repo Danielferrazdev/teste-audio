@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Define o tipo de documento HTML5 -->
+  <meta charset="UTF-8"> <!-- Garante acentuação correta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade para mobile -->
+  <title>Prepare-se — Teste de Audição</title> <!-- Título exibido na aba do navegador -->
+  <link rel="stylesheet" href="css/style-v1.css"> <!-- Link para o CSS externo -->
+</head>
+<body>
+  <!-- Cabeçalho da página -->
+  <header>
+    <h1>Teste de Audição Online</h1> <!-- Título principal do site -->
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <!-- Seção de introdução -->
+    <section aria-labelledby="titulo-preparacao">
+      <h2 id="titulo-preparacao">Prepare-se</h2>
+      <p>O teste levará cerca de 5 minutos. Ele não substitui uma avaliação auditiva profissional, mas pode indicar se você deve buscar um especialista.</p>
+    </section>
+
+    <!-- Seção de orientações -->
+    <section aria-labelledby="titulo-orientacoes">
+      <h3 id="titulo-orientacoes">Para um resultado mais preciso:</h3>
+      <ul>
+        <li>Sente-se em um local tranquilo</li>
+        <li>Use fones de ouvido</li>
+        <li>Ajuste o volume para 50%</li>
+      </ul>
+    </section>
+
+    <!-- Seção de ação -->
+    <section>
+      <button id="start-test" onclick="window.location.href='questionnaire-v1-1.html'">
+        Começar o teste de audição
+      </button>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Teste de Audição Online — Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script JS -->
+  <script src="js/script.js"></script>
+</body>
+</html>

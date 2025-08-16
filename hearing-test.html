@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Audição</title>
+  <link rel="stylesheet" href="css/style-v1.css">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Teste de Audição</h1>
+    <nav>
+      <ul>
+        <li><a href="index-v1.html">Voltar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <section aria-labelledby="instrucoes">
+      <h2 id="instrucoes">Como funciona</h2>
+      <p>Você ouvirá uma sequência de sons. Após cada som, informe se conseguiu ouvi-lo. O resultado será mostrado no final.</p>
+    </section>
+
+    <!-- Área do teste -->
+    <section id="test-area">
+      <button id="play-sound">🔊 Tocar som</button>
+      <div class="answer-buttons">
+        <button id="heard">✅ Ouvi</button>
+        <button id="not-heard">❌ Não ouvi</button>
+      </div>
+    </section>
+
+    <!-- Resultado final -->
+    <section id="result-section" style="display: none;">
+      <h2>Resultado</h2>
+      <p id="result-text"></p>
+      <button onclick="location.reload()">Refazer teste</button>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Teste de Audição Online</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="js/test.js"></script>
+</body>
+</html>
