@@ -6,12 +6,12 @@
   box-sizing: border-box; /* Inclui borda e padding no cálculo do tamanho */
 }
 
-/* Importando a fonte outfit */
+/* Importando a fonte Outfit */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 /* Corpo da página */
 body {
-  font-family: Outfif, Arial, Helvetica, sans-serif; /* Fonte limpa e fácil de ler */
+  font-family: Outfit, Arial, Helvetica, sans-serif; /* Fonte limpa e fácil de ler */
   background-color: var(--body-color); /* Cor de fundo suave */
   color: var(--text-color); /* Texto em tom cinza escuro para melhor leitura */
   line-height: 1.6; /* Espaçamento entre linhas para leitura confortável */
@@ -31,14 +31,40 @@ body {
 
 /* Cabeçalho */
 header {
-  background-color: var(--b); /* Azul inspirado no Philips */
+  background-color: var(--bg-color); /* Azul inspirado no Philips */
   color: var(--secondary-color); /* Texto branco */
-  padding: 1rem 2rem; /* Espaçamento interno */
+  padding: 1rem 8rem; /* Espaçamento interno */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-color);
+  position: relative;
 }
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.2);
+}
+
+
 
 /* Título no cabeçalho */
 div {
   background: var(--bg-color);
+  text-align: center;
   
 }
 
@@ -51,7 +77,7 @@ div {
 h1 {
   background: var(--primary-color);
   color: var(--secondary-color); /* Azul padrão site */
-  margin-bottom: 0.5rem;
+  font-size: 20px;
 }
 /* Conteúdo principal */
 main {
@@ -59,11 +85,20 @@ main {
   max-width: 800px; /* Limita a largura */
   margin: 2rem auto; /* Centraliza na tela */
   background: var(--bg-color); /* Fundo branco */
-  padding: 2rem; /* Espaçamento interno */
+  padding: 1rem; /* Espaçamento interno */
   border-radius: 8px; /* Bordas arredondadas */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
   text-align: center; /* alinha o texto ao centro */
+  font-size: 15px;
 }
+
+.container, main {
+  display: grid;
+  place-items: center; /* Centraliza horizontal e vertical */
+  height: 100vh;
+}
+
+
 
 /* Títulos dentro do main */
 main h2, main h3 {
@@ -78,19 +113,33 @@ main p {
 
 /* Lista de orientações */
 main ul {
-  margin-bottom: 2rem;
-  padding-left: 1.2rem; /* Espaço para os marcadores */
+  list-style: none;      /* tira as bolinhas */
+  padding: 0;
+  margin: 0;
+  display: flex;         /* coloca lado a lado */
+  justify-content: center; /* centraliza na horizontal */
+  gap: 20px;             /* espaço entre os itens */
 }
 
 main li {
-  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* ícone em cima, texto embaixo */
+  text-align: center;
 }
+
+.material-icons {
+    font-size: 60px !important;      /* tamanho do ícone garante que a sua regra tenha prioridade sobre a que o Google injeta */
+    margin-right: 6x;         /* espaço entre ícone e texto */
+    color:var(--primary-color);            /* cor (pode trocar por qualquer outra) */
+  }
 
 /* Botão iniciar teste */
 #start-test {
   background-color: var(--secondary-color); /* verde padrão site */
   color: var(--bg-color);
   padding: 0.8rem 1.5rem;
+  margin-top: 32px;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -103,7 +152,7 @@ main li {
 }
 
 /* Rodapé */
-footer {
+footer {  
   background-color: var(--primary-color);
   color: var(--bg-color);
   text-align: center;
@@ -111,12 +160,229 @@ footer {
   font-size: 0.9rem;
 }
 
+
+  .question {
+      display: none; /* Só a pergunta atual será visível */
+      margin-bottom: 1.5rem;
+    }
+
+  .question.active {
+      display: block;
+    }
+
+  button.answer-btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      margin: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+  button.next-btn {
+      margin-top: 1rem;
+      background-color: #0078d4;
+      color: white;
+    }
+
+  button.next-btn:hover {
+      background-color: #005fa3;
+    }
+
+  button.answer-btn.yes {
+      background-color: #28a745;
+      color: white;
+    }
+
+  button.answer-btn.yes:hover {
+      background-color: #1e7e34;
+    }
+
+  button.answer-btn.no {
+      background-color: #dc3545;
+      color: white;
+    }
+
+  button.answer-btn.no:hover {
+      background-color: #a71d2a;
+    }
+
+  #finish-btn {
+      display: none;
+      background-color: var(--secondary-color); /* verde padrão site */
+      Color: var(--bg-color);
+      padding: 0.8rem 1.5rem;
+      margin-top: 32px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer; 
+      transition: background 0.3s ease;
+    }
+
+  #finish-btn:hover {
+      background-color: var(--primary-color); /* Azul mais escuro no hover */
+    }
+
+
+/* Estilo base dos botões */
+.btn {
+  display: inline-flex;               /* Ícone + texto bem alinhados */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;                        /* espaço entre ícone e texto */
+  padding: 0.9rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;                /* bordas mais modernas */
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* Botão "Tocar som" */
+.btn-sound {
+  background: linear-gradient(135deg, #0078d4, #005fa3);
+  color: #fff;
+}
+.btn-sound:hover {
+  background: linear-gradient(135deg, #005fa3, #004080);
+  transform: translateY(-2px);
+}
+
+/* Botão "Ouvi" */
+.btn-yes {
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: #fff;
+}
+.btn-yes:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  transform: translateY(-2px);
+}
+
+/* Botão "Não ouvi" */
+.btn-no {
+  background: linear-gradient(135deg, #dc3545, #a71d2a);
+  color: #fff;
+}
+.btn-no:hover {
+  background: linear-gradient(135deg, #a71d2a, #7a1a21);
+  transform: translateY(-2px);
+}
+
+/* Área de botões de resposta */
+.answer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* para quebrar em telas menores */
+}
+
+/* Fundo do pop-up */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none; /* escondido por padrão */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Exibe o pop-up quando ativo */
+.popup.show {
+  display: flex;
+}
+
+/* Caixa do pop-up */
+.popup-content {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  max-width: 90%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animação suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+  .popup-content {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+
+.result-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: #4CAF50;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #43a047;
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: #2196F3;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #1976d2;
+}
+
+
+
+
+
 /* Responsividade para telas menores */
 @media (max-width: 600px) {
  
-
   main {
     margin: 1rem;
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+  ul {
+    flex-direction: column;   /* empilha os itens */
+    align-items: center;      /* centraliza ao empilhar */
+    }
+  .material-icons {
+    font-size: 50px !important;
   }
 }

@@ -3,30 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Questionário - Philips</title>
-  <!-- CSS padrão -->
-  <link rel="stylesheet" href="css/style-v1.css">
+  <title>Questionário - life-aparelhos-auditivos</title>
+  <link rel="stylesheet" href="css/style-v1.css">    <!-- CSS padrão -->
 </head>
 <body>
   
   <!-- Header padrão -->
   <header>
-    <div class="logo">Philips</div>
+    <div aria-labelledby="logo-empresa">  <!-- Logo do site -->
+      <a href="https://lifeaparelhosauditivos.com.br/site/index.php" class="logo">
+        <img src="assets/logo-home.png" alt="Logo da empresa">
+      </a>
+    </div>
+  </header>
+    <div aria-labelledby="titulo - Teste de Audição">
+      <h1 id="titulo-teste">Teste de Audição Online</h1> <!-- Título principal do site -->
+    </div>
+
+    <!--<div class="logo">Philips</div>
     <nav>
       <a href="index-v1.html">Home</a>
       <a href="questionnaire-v1.html" class="active">Questionário</a>
       <a href="calibration-v1.html">Calibração</a>
       <a href="hearing-test.html">Teste</a>
-    </nav>
-  </header>
+    </nav>-->
 
   <!-- Conteúdo principal -->
   <main class="container">
-    <h1>Bem-vindo ao Questionário</h1>
-    <p>Este questionário é parte fundamental para calibrarmos corretamente o sistema. 
+   <section aria-labelledby="titulo-preparacao">
+      <h2 id="titulo-preparacao">Bem-vindo ao Questionário</h2>
+      <p>Este questionário é parte fundamental para calibrarmos corretamente o sistema. 
     Reserve alguns minutos para responder com atenção.</p>
-    
-    <a href="questionnaire-v1.html" class="btn">Iniciar Questionário</a>
+    </section>
+    <section>
+      <button id="start-test" onclick="window.location.href='questionnaire-v1.html'">
+        Iniciar Questionário
+      </button>
+    </section>
   </main>
 
   <!-- Footer padrão -->

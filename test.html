@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!--
+      ==========================
+      PORTFÓLIO BASE (SINGLE FILE)
+      ==========================
+      • Estrutura semântica em HTML5
+      • CSS moderno (variáveis, grid/flex, dark mode)
+      • JS leve para navegação, tabs de experiência e preferências
+      • Comentado linha a linha para facilitar personalização
+
+      ▶ COMO USAR
+      1) Substitua os textos marcados com TODO.
+      2) Troque as imagens/links das redes.
+      3) Ajuste cores e tipografia nas variáveis CSS.
+      4) Opcional: separe CSS/JS em arquivos externos (comentários no final explicam).
+
+      ⚠️ Ética & autoria: este layout é inspirado no estilo de uma página moderna
+      (sidebar fixa + conteúdo rolável), mas é um código ORIGINAL escrito do zero,
+      para você usar livremente no seu portfólio.
+    -->
+
+    <!-- Metadados básicos -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daniel Ferraz de Mendonça — Desenvolvedor(a) Front‑End</title>
+    <meta name="description" content="Portfólio profissional — projetos, experiência e contato." />
+
+    <!-- Open Graph / compartilhamento -->
+    <meta property="og:title" content="Daniel Ferraz de Mendonça — Portfólio" />
+    <meta property="og:description" content="Projetos, experiência e formas de contato." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seudominio.com/" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Favicon (opcional) -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Fontes do sistema para performance (pode trocar por Google Fonts) -->
+    <style>
+      /* =========================
+         Variáveis de design globais
+         ========================= */
+      :root {
+        /* Paleta (dark-mode first) */
+        --bg: #0b1220;           /* fundo principal */
+        --bg-2: #0f1629;         /* cartões / blocos */
+        --text: #e6edf3;         /* texto padrão */
+        --muted: #a5b1c2;        /* texto secundário */
+        --brand: #65d6a0;        /* cor de destaque */
+        --brand-2: #7aa2f7;      /* destaque secundário */
+        --line: #1d2842;         /* linhas sutis */
+        --card: #111a33;         /* cards hover */
+        --shadow: 0 10px 30px rgba(0,0,0,.35);
+
+        /* Tipografia */
+        --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+
+        /* Ritmo e raios */
+        --radius: 16px;
+        --space-1: .25rem;
+        --space-2: .5rem;
+        --space-3: .75rem;
+        --space-4: 1rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-12: 3rem;
+        --container: 1100px;
+      }
+
+      /* Light mode automático (opcional) */
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f8fafc;
+          --bg-2: #ffffff;
+          --text: #0b1220;
+          --muted: #49566d;
+          --line: #e6eef7;
+          --card: #f1f5fb;
+          --shadow: 0 10px 30px rgba(14, 25, 65, .08);
+        }
+      }
+
+      /* Reset mínimo + base */
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 10% -10%, rgba(122,162,247,.12), transparent 60%),
+                    radial-gradient(1200px 800px at 110% 10%, rgba(101,214,160,.10), transparent 60%),
+                    var(--bg);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      img { max-width: 100%; display: block; }
+
+      /* Layout principal: sidebar + conteúdo */
+      .wrap {
+        max-width: var(--container);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 320px 1fr; /* sidebar + conteúdo */
+        gap: var(--space-12);
+        padding: var(--space-8);
+      }
+
+      /* Responsivo: no mobile vira coluna */
+      @media (max-width: 900px) {
+        .wrap {
+          grid-template-columns: 1fr;
+          gap: var(--space-8);
+          padding: var(--space-6);
+        }
+      }
+
+      /* Sidebar fixa/sticky */
+      aside.sidebar {
+        position: sticky;
+        top: var(--space-8);
+        align-self: start;
+        background: linear-gradient(180deg, var(--bg-2), transparent 120%);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: var(--space-8);
+        box-shadow: var(--shadow);
+      }
+
+      .avatar {
+        width: 96px; height: 96px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        object-fit: cover;
+      }
+
+      .name { font-size: 1.75rem; font-weight: 800; margin: var(--space-4) 0 0; }
+      .role { color: var(--muted); margin: 0 0 var(--space-6); }
+
+      nav.nav {
+        display: flex; flex-direction: column; gap: var(--space-2);
+        margin: var(--space-6) 0;
+      }
+      nav.nav a {
+        padding: .5rem .75rem;
+        border-radius: 10px;
+        border: 1px solid transparent;
+      }
+      nav.nav a.active {
+        border-color: var(--line);
+        background: rgba(122,162,247,.08);
+      }
+
+      .social {
+        display: flex; gap: var(--space-3);
+        flex-wrap: wrap;
+        margin-top: var(--space-6);
+      }
+      .social a { padding: .4rem .7rem; border: 1px solid var(--line); border-radius: 999px; }
+
+      /* Conteúdo principal */
+      main { display: grid; gap: var(--space-12); }
+
+      section {
+        background: linear-gradient(180deg, var(--bg-2), transparent 140%);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: var(--space-8);
+        box-shadow: var(--shadow);
+      }
+
+      h2.section-title {
+        margin: 0 0 var(--space-4);
+        font-size: 1.25rem;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+
+      .kicker { color: var(--muted); margin-top: -0.5rem; }
+
+      /* Sobre */
+      .about p { margin: 0 0 var(--space-4); }
+      .tech-list { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-top: var(--space-4); }
+      .tech-list li { list-style: none; font-family: var(--font-mono); font-size: .9rem; color: var(--muted); }
+
+      /* Experiência (tabs) */
+      .exp {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: var(--space-8);
+      }
+      @media (max-width: 800px) { .exp { grid-template-columns: 1fr; } }
+
+      .exp-tabs { display: flex; flex-direction: column; gap: .25rem; }
+      .exp-tabs button {
+        text-align: left; padding: .6rem .75rem; border-radius: 10px;
+        border: 1px solid var(--line); background: transparent; color: var(--text);
+        cursor: pointer; font: inherit;
+      }
+      .exp-tabs button[aria-selected="true"] {
+        background: rgba(101,214,160,.10);
+        border-color: var(--brand);
+      }
+
+      .exp-panel { display: none; }
+      .exp-panel.active { display: block; }
+      .exp-panel h3 { margin: 0 0 .25rem; }
+      .exp-panel time { color: var(--muted); font-family: var(--font-mono); }
+      .exp-points { margin: var(--space-4) 0 0; padding-left: 1rem; }
+      .exp-points li { margin: .4rem 0; }
+
+      /* Projetos */
+      .projects {
+        display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-6);
+      }
+      @media (max-width: 900px) { .projects { grid-template-columns: 1fr; } }
+      .project-card {
+        grid-column: span 6; /* 2 por linha em telas médias/grandes */
+        border: 1px solid var(--line); border-radius: var(--radius);
+        background: var(--card);
+        padding: var(--space-6);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+      .project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+      .project-card h3 { margin-top: 0; }
+      .tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+      .tag { font-family: var(--font-mono); font-size: .8rem; border: 1px solid var(--line); padding: .2rem .5rem; border-radius: 999px; color: var(--muted); }
+
+      /* Contato */
+      .contact-cta { font-size: 1.1rem; }
+      .btn {
+        display: inline-block; padding: .75rem 1rem; border-radius: 12px; border: 1px solid var(--brand);
+        background: linear-gradient(180deg, rgba(101,214,160,.15), transparent);
+      }
+
+      /* Botão voltar ao topo */
+      .to-top {
+        position: fixed; right: 16px; bottom: 16px; z-index: 50;
+        display: none; /* aparece via JS quando rolar */
+        border: 1px solid var(--line); background: var(--bg-2); color: var(--text);
+        padding: .6rem .8rem; border-radius: 10px; cursor: pointer;
+      }
+      .to-top.show { display: inline-block; }
+
+      /* Rodapé */
+      footer { text-align: center; color: var(--muted); padding: var(--space-8); }
+    </style>
+  </head>
+
+  <body>
+    <!-- Container geral -->
+    <div class="wrap">
+      <!-- Sidebar com identidade e navegação -->
+      <aside class="sidebar" aria-label="Barra lateral">
+        <!-- Foto de perfil (troque o src) -->
+        <img class="avatar" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400" alt="Foto de perfil de Daniel Ferraz de Mendonça" />
+
+        <!-- Nome e papel -->
+        <h1 class="name">Daniel Ferraz de Mendonça</h1>
+        <p class="role">Desenvolvedor(a) Front‑End • Focado em acessibilidade, desempenho e UX</p>
+
+        <!-- Navegação de âncoras -->
+        <nav class="nav" aria-label="Navegação de seções">
+          <a href="#sobre">Sobre</a>
+          <a href="#experiencia">Experiência</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <!-- Links sociais (troque os href) -->
+        <div class="social" aria-label="Redes sociais">
+          <a href="https://github.com/seuusuario" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/seuusuario" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="mailto:voce@email.com">Email</a>
+          <a href="/cv.pdf" target="_blank" rel="noreferrer">Currículo</a>
+        </div>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <main>
+        <!-- Seção: Sobre -->
+        <section id="sobre" class="about" tabindex="-1">
+          <h2 class="section-title">Sobre</h2>
+          <p class="kicker">Resumo rápido</p>
+          <p>
+            <!-- TODO: substitua pelo seu texto -->
+            Olá! Sou <strong>Daniel Ferraz de Mendonça</strong>, desenvolvedor(a) front‑end do Brasil. Gosto de transformar
+            ideias em experiências web rápidas, acessíveis e bonitas. Tenho experiência com
+            <em>HTML5</em>, <em>CSS3</em>, <em>JavaScript</em>, <em>React</em> e <em>Node</em>.
+          </p>
+          <p>
+            Atualmente estou aprofundando estudos em performance, Web Components e testes automatizados.
+            Quando não estou codando, gosto de compartilhar conhecimento e criar pequenos projetos open‑source.
+          </p>
+          <ul class="tech-list" aria-label="Tecnologias favoritas">
+            <li>HTML • Semântica • A11y</li>
+            <li>CSS • Flex/Grid • Animations</li>
+            <li>JS/TS • React • Node</li>
+            <li>Vite • Next.js • Jest</li>
+          </ul>
+        </section>
+
+        <!-- Seção: Experiência (com tabs) -->
+        <section id="experiencia" class="experience" tabindex="-1">
+          <h2 class="section-title">Experiência</h2>
+          <p class="kicker">Onde trabalhei</p>
+
+          <div class="exp" role="tablist" aria-label="Experiências por empresa">
+            <!-- Coluna de tabs -->
+            <div class="exp-tabs" aria-orientation="vertical">
+              <!-- Cada botão controla um painel pelo atributo data-target -->
+              <button role="tab" aria-selected="true" aria-controls="painel-1" id="tab-1" data-target="#painel-1">Empresa Alpha</button>
+              <button role="tab" aria-selected="false" aria-controls="painel-2" id="tab-2" data-target="#painel-2">Startup Beta</button>
+              <button role="tab" aria-selected="false" aria-controls="painel-3" id="tab-3" data-target="#painel-3">Freelancer</button>
+            </div>
+
+            <!-- Conteúdo dos painéis -->
+            <div class="exp-content">
+              <article id="painel-1" class="exp-panel active" role="tabpanel" aria-labelledby="tab-1">
+                <h3>Desenvolvedor(a) Front‑End <span style="color: var(--brand)">@ Empresa Alpha</span></h3>
+                <time datetime="2023-01">Jan 2023</time> — <time datetime="2025-08">Atual</time>
+                <ul class="exp-points">
+                  <li>Conduzi migração para <strong>React</strong> e <strong>TypeScript</strong>, reduzindo bugs em 35%.</li>
+                  <li>Implementei <strong>design system</strong> com tokens e componentes reutilizáveis.</li>
+                  <li>Otimizei performance (Core Web Vitals) com lazy‑loading e hidratação parcial.</li>
+                </ul>
+              </article>
+              <article id="painel-2" class="exp-panel" role="tabpanel" aria-labelledby="tab-2">
+                <h3>UI Engineer <span style="color: var(--brand)">@ Startup Beta</span></h3>
+                <time datetime="2021-02">Fev 2021</time> — <time datetime="2022-12">Dez 2022</time>
+                <ul class="exp-points">
+                  <li>Criei pipeline CI/CD e testes <strong>Playwright</strong>.</li>
+                  <li>Melhorei acessibilidade para WCAG AA, elevando Lighthouse A11y a 98.</li>
+                  <li>Coordenei squad em metodologia ágil com Kanban.</li>
+                </ul>
+              </article>
+              <article id="painel-3" class="exp-panel" role="tabpanel" aria-labelledby="tab-3">
+                <h3>Desenvolvedor(a) Freelancer</h3>
+                <time datetime="2019-01">2019</time> — <time datetime="2021-01">2021</time>
+                <ul class="exp-points">
+                  <li>Landing pages otimizadas para conversão (até +22%).</li>
+                  <li>Integrações com APIs e CMS headless (Strapi/Contentful).</li>
+                  <li>Suporte, manutenção e SEO técnico.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Seção: Projetos (cards) -->
+        <section id="projetos" class="projects-section" tabindex="-1">
+          <h2 class="section-title">Projetos</h2>
+          <p class="kicker">Alguns trabalhos que curti</p>
+
+          <div class="projects">
+            <!-- Card 1 -->
+            <article class="project-card" aria-label="Projeto 1">
+              <h3>Dashboard Financeiro</h3>
+              <p>App SPA com filtros dinâmicos, gráficos e exportação para CSV/PDF.</p>
+              <div class="tags">
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Vite</span>
+              </div>
+              <p><a href="#" target="_blank" rel="noreferrer">Ver repositório →</a></p>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="project-card" aria-label="Projeto 2">
+              <h3>Design System Tokens</h3>
+              <p>Biblioteca de componentes com tokens, temas e documentação interativa.</p>
+              <div class="tags">
+                <span class="tag">Storybook</span>
+                <span class="tag">CSS Vars</span>
+                <span class="tag">A11y</span>
+              </div>
+              <p><a href="#" target="_blank" rel="noreferrer">Ver documentação →</a></p>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="project-card" aria-label="Projeto 3">
+              <h3>Site Pessoal Estático</h3>
+              <p>Este próprio portfólio, focado em performance (sem frameworks pesados).</p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+              <p><a href="#" target="_blank" rel="noreferrer">Ver live demo →</a></p>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="project-card" aria-label="Projeto 4">
+              <h3>API de Tarefas</h3>
+              <p>Backend simples com autenticação JWT e testes automatizados.</p>
+              <div class="tags">
+                <span class="tag">Node</span>
+                <span class="tag">Express</span>
+                <span class="tag">Jest</span>
+              </div>
+              <p><a href="#" target="_blank" rel="noreferrer">Ver repositório →</a></p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Seção: Contato -->
+        <section id="contato" class="contact" tabindex="-1">
+          <h2 class="section-title">Contato</h2>
+          <p class="contact-cta">
+            Tem uma ideia, vaga ou projeto? Vamos conversar!<br/>
+            Me chame no <a href="mailto:voce@email.com">voce@email.com</a> ou no
+            <a href="https://www.linkedin.com/in/seuusuario" target="_blank" rel="noreferrer">LinkedIn</a>.
+          </p>
+          <p>
+            <a class="btn" href="mailto:voce@email.com">Enviar email</a>
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      © <span id="year"></span> Daniel Ferraz de Mendonça. Construído com HTML, CSS e uma pitada de JS.
+    </footer>
+
+    <!-- Botão voltar ao topo -->
+    <button class="to-top" aria-label="Voltar ao topo">↑ Topo</button>
+
+    <!-- Script JS leve para interações -->
+    <script>
+      // ===============================
+      // Utilitários de seleção
+      // ===============================
+      const $ = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+      // Ano no rodapé
+      $('#year').textContent = new Date().getFullYear();
+
+      // Navegação: destacar link ativo conforme a seção visível
+      const navLinks = $$('.nav a');
+      const sections = navLinks.map(link => $(link.getAttribute('href')));
+
+      // IntersectionObserver para detectar seção ativa
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Remove active antiga
+            navLinks.forEach(a => a.classList.remove('active'));
+            // Acha o link que aponta para essa seção
+            const active = navLinks.find(a => a.getAttribute('href') === `#${entry.target.id}`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.2, 1] });
+
+      // Observar cada seção
+      sections.forEach(sec => io.observe(sec));
+
+      // Rolagem suave (navegação interna)
+      navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = $(link.getAttribute('href'));
+          target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // Tabs da Experiência (acessíveis)
+      const tabButtons = $$('.exp-tabs [role="tab"]');
+      const panels = $$('.exp-panel');
+
+      function activateTab(btn) {
+        // Desmarca todos
+        tabButtons.forEach(b => b.setAttribute('aria-selected', 'false'));
+        panels.forEach(p => p.classList.remove('active'));
+        // Marca o atual
+        btn.setAttribute('aria-selected', 'true');
+        const sel = btn.getAttribute('data-target');
+        const panel = $(sel);
+        panel?.classList.add('active');
+        // Opcional: foco no título para leitores de tela
+        panel?.querySelector('h3')?.focus?.();
+      }
+
+      // Clique do mouse
+      tabButtons.forEach(btn => btn.addEventListener('click', () => activateTab(btn)));
+
+      // Teclado (setas navegam)
+      tabButtons.forEach((btn, idx) => {
+        btn.addEventListener('keydown', (e) => {
+          const { key } = e;
+          const prev = tabButtons[idx - 1] || tabButtons[tabButtons.length - 1];
+          const next = tabButtons[idx + 1] || tabButtons[0];
+          if (key === 'ArrowUp' || key === 'ArrowLeft') { e.preventDefault(); prev.focus(); }
+          if (key === 'ArrowDown' || key === 'ArrowRight') { e.preventDefault(); next.focus(); }
+          if (key === 'Home') { e.preventDefault(); tabButtons[0].focus(); }
+          if (key === 'End') { e.preventDefault(); tabButtons[tabButtons.length - 1].focus(); }
+          if (key === 'Enter' || key === ' ') { e.preventDefault(); activateTab(document.activeElement); }
+        });
+      });
+
+      // Botão "voltar ao topo"
+      const toTop = $('.to-top');
+      window.addEventListener('scroll', () => {
+        const show = window.scrollY > 600;
+        toTop.classList.toggle('show', show);
+      });
+      toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // Preferência de usuário: lembra a tab ativa de experiência
+      const TAB_KEY = 'exp-active-index';
+      // Salva ao ativar
+      tabButtons.forEach((btn, i) => btn.addEventListener('click', () => localStorage.setItem(TAB_KEY, String(i))));
+      // Restaura ao carregar
+      const saved = Number(localStorage.getItem(TAB_KEY));
+      if (!Number.isNaN(saved) && tabButtons[saved]) activateTab(tabButtons[saved]);
+
+      // Acessibilidade: permitir pular para conteúdo (atalho)
+      // Pressione "/" para focar na primeira seção
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/') {
+          e.preventDefault();
+          $('#sobre')?.focus();
+        }
+      });
+    </script>
+
+    <!--
+      =================================
+      DICAS PARA PERSONALIZAR/EVOLUIR
+      =================================
+      • Separar CSS: crie styles.css e mova o conteúdo de <style> para lá; depois: <link rel="stylesheet" href="styles.css" />
+      • Separar JS: crie app.js e mova o script; depois: <script src="app.js" defer></script>
+      • Hospedar no GitHub Pages / Netlify / Vercel.
+      • SEO: atualize <title>, description e OG tags com Daniel Ferraz de Mendonça e imagem.
+      • Acessibilidade: mantenha landmarks (aside, main, section) e aria‑labels.
+      • Performance: otimize imagens e use formatos modernos (WebP/AVIF).
+      • Dark/Light: se quiser um toggle manual, adicione uma classe .light no <html> e alterne via JS.
+    -->
+  </body>
+</html>

@@ -13,7 +13,6 @@ const totalSteps = 5; // Quantidade de sons a tocar
 
 // Função para tocar som
 function playSound() {
-  // Criar um contexto de áudio
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   const oscillator = audioCtx.createOscillator();
   const gainNode = audioCtx.createGain();
@@ -29,7 +28,7 @@ function playSound() {
   gainNode.connect(audioCtx.destination);
 
   oscillator.start();
-  oscillator.stop(audioCtx.currentTime + 1); // Som dura 1 segundo
+  oscillator.stop(audioCtx.currentTime + 1);
 
   console.log(`Tocando frequência: ${freq} Hz`);
 }
@@ -42,13 +41,15 @@ function registerAnswer(heard) {
   if (testStep >= totalSteps) {
     finishTest();
   } else {
-    alert(`Som ${testStep + 1} de ${totalSteps}. Clique em "Tocar som" para continuar.`);
+    // Mostra popup da próxima etapa
+    mostrarPopup(`Etapa ${testStep + 1} de ${totalSteps}`);
   }
 }
 
 // Função para finalizar teste
 function finishTest() {
   document.getElementById("test-area").style.display = "none";
+  document.getElementById("instrucoes").style.display = "none";
   resultSection.style.display = "block";
 
   const heardCount = answers.filter(a => a).length;
@@ -60,3 +61,17 @@ function finishTest() {
 playButton.addEventListener("click", playSound);
 heardButton.addEventListener("click", () => registerAnswer(true));
 notHeardButton.addEventListener("click", () => registerAnswer(false));
+
+// ---------- POPUP ----------
+function mostrarPopup(texto) {
+  const popup = document.getElementById("step-popup");
+  const popupText = document.getElementById("popup-text");
+
+  popupText.textContent = texto;
+  popup.classList.add("show"); // usa a classe show do CSS
+
+  // Esconde automaticamente após 1.5s
+  setTimeout(() => {
+    popup.classList.remove("show");
+  }, 1500);
+}

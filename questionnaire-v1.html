@@ -5,161 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Questionário de Preparação</title>
   <link rel="stylesheet" href="css/style-v1.css">
-  <style>
-    /* Estilo rápido específico para o questionário */
-        main {
-      text-align: center;
-    }
-
-    .question {
-      display: none; /* Só a pergunta atual será visível */
-      margin-bottom: 1.5rem;
-    }
-
-    .question.active {
-      display: block;
-    }
-
-    button.answer-btn {
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      margin: 0.5rem;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button.next-btn {
-      margin-top: 1rem;
-      background-color: #0078d4;
-      color: white;
-    }
-
-    button.next-btn:hover {
-      background-color: #005fa3;
-    }
-
-    button.answer-btn.yes {
-      background-color: #28a745;
-      color: white;
-    }
-
-    button.answer-btn.yes:hover {
-      background-color: #1e7e34;
-    }
-
-    button.answer-btn.no {
-      background-color: #dc3545;
-      color: white;
-    }
-
-    button.answer-btn.no:hover {
-      background-color: #a71d2a;
-    }
-
-    #finish-btn {
-      display: none;
-      background-color: #0078d4;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;      
-    }
-
-    #finish-btn:hover {
-      background-color: #005fa3;
-    }
-
-  </style>
+  
 </head>
 <body>
   <header>
-    <h1>Questionário de Preparação</h1>
+
+    <div aria-labelledby="logo-empresa">  <!-- Logo do site -->
+      <a href="https://lifeaparelhosauditivos.com.br/site/index.php" class="logo">
+        <img src="assets/logo-home.png" alt="Logo da empresa">
+      </a>
+    </div>
+  </header>
+    <div aria-labelledby="titulo - Teste de Audição">
+      <h1 id="titulo-teste">Teste de Audição Online</h1> <!-- Título principal do site -->
+    </div>
+
   </header>
 
   <main>
-    <section id="questionnaire">
+    <section id="questionnaire" aria-labelledby="titulo-preparacao">
+      <h2 id="titulo-preparacao">Questionário de Preparação</h2>
+      
+    </section>
       <!-- Perguntas serão inseridas dinamicamente pelo JS -->
     </section>
 
     <button id="next-btn" class="next-btn">1 de X →</button>
-    <button id="finish-btn">Fazer o teste</button>
+    <p id="final-message" style="display: none;">
+  Agora que conseguiu responder nosso questionário de preparação,<br>clique em <b>Fazer o teste</b> para iniciá-lo
+</p>
+
+  <button id="finish-btn">Fazer o teste</button>
   </main>
 
   <footer>
     <p>&copy; 2025 Life Aparelhos Auditivos - Teste de Audição Online — Todos os direitos reservados.</p>
   </footer>
 
-  <script>
-    // Perguntas (exemplo inicial, você vai me passar a lista completa depois)
-    const questions = [
-      "Você usa fones de ouvido frequentemente?",
-      "Você já teve problemas auditivos antes?",
-      "Está em um ambiente silencioso agora?",
-      "Você sente dificuldade para ouvir em lugares barulhentos?"
-    ];
-
-    let currentQuestion = 0;
-    const answers = []; // Armazena respostas (true = sim, false = não)
-
-    const questionnaireEl = document.getElementById('questionnaire');
-    const nextBtn = document.getElementById('next-btn');
-    const finishBtn = document.getElementById('finish-btn');
-
-    // Cria os elementos de cada pergunta
-    questions.forEach((q, index) => {
-      const div = document.createElement('div');
-      div.classList.add('question');
-      if(index === 0) div.classList.add('active'); // Primeira pergunta visível
-
-      div.innerHTML = `
-        <p>${q}</p>
-        <button class="answer-btn yes">Sim</button>
-        <button class="answer-btn no">Não</button>
-      `;
-      questionnaireEl.appendChild(div);
-    });
-
-    const questionElements = document.querySelectorAll('.question');
-
-    // Função para atualizar botão "next" com contador
-    function updateNextBtn() {
-      nextBtn.textContent = `${currentQuestion + 1} de ${questions.length} →`;
-    }
-    updateNextBtn();
-
-    // Eventos dos botões Sim/Não
-    questionElements.forEach((qEl, idx) => {
-      const yesBtn = qEl.querySelector('.yes');
-      const noBtn = qEl.querySelector('.no');
-
-      yesBtn.addEventListener('click', () => answerQuestion(true, idx));
-      noBtn.addEventListener('click', () => answerQuestion(false, idx));
-    });
-
-    function answerQuestion(value, idx) {
-      answers[idx] = value;
-
-      // Avança para próxima pergunta ou mostra botão finalizar
-      questionElements[idx].classList.remove('active');
-      currentQuestion++;
-      if(currentQuestion < questions.length) {
-        questionElements[currentQuestion].classList.add('active');
-        updateNextBtn();
-      } else {
-        nextBtn.style.display = 'none';
-        finishBtn.style.display = 'inline-block';
-      }
-    }
-
-    // Botão finalizar → envia para o teste
-    finishBtn.addEventListener('click', () => {
-      // Aqui você pode enviar 'answers' para o servidor ou localStorage
-      console.log('Respostas:', answers);
-      window.location.href = 'hearing-test.html';
-    });
-  </script>
+    <script src="js/questionnaire.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ const answers = [];
 const questionnaireEl = document.getElementById('questionnaire');
 const nextBtn = document.getElementById('next-btn');
 const finishBtn = document.getElementById('finish-btn');
+const finalMessage = document.getElementById('final-message'); // 👈 pegando o <p>
 
 // Criar perguntas dinamicamente
 questions.forEach((q, index) => {
@@ -56,6 +57,7 @@ function answerQuestion(value, idx) {
   } else {
     nextBtn.style.display = 'none';
     finishBtn.style.display = 'inline-block';
+    finalMessage.style.display = 'block'; // 👈 mostra o texto final
   }
 }
 

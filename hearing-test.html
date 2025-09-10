@@ -9,35 +9,49 @@
 <body>
   <!-- Cabeçalho -->
   <header>
-    <h1>Teste de Audição</h1>
-    <nav>
-      <ul>
-        <li><a href="index-v1.html">Voltar</a></li>
-      </ul>
-    </nav>
+    <div aria-labelledby="logo-empresa">  <!-- Logo do site -->
+      <a href="https://lifeaparelhosauditivos.com.br/site/index.php" class="logo">
+        <img src="assets/logo-home.png" alt="Logo da empresa">
+      </a>
+    </div>
   </header>
+
+  <div aria-labelledby="titulo-teste">
+    <h1 id="titulo-teste">Teste de Audição Online</h1> <!-- Título principal do site -->
+  </div>
 
   <!-- Conteúdo principal -->
   <main>
-    <section aria-labelledby="instrucoes">
-      <h2 id="instrucoes">Como funciona</h2>
+    <!-- Instruções iniciais -->
+    <section id="instrucoes">
+      <h2>Como funciona</h2>
       <p>Você ouvirá uma sequência de sons. Após cada som, informe se conseguiu ouvi-lo. O resultado será mostrado no final.</p>
     </section>
 
     <!-- Área do teste -->
     <section id="test-area">
-      <button id="play-sound">🔊 Tocar som</button>
+      <button id="play-sound" class="btn btn-sound">🔊 Tocar som</button>
       <div class="answer-buttons">
-        <button id="heard">✅ Ouvi</button>
-        <button id="not-heard">❌ Não ouvi</button>
+        <button id="heard" class="btn btn-yes">✅ Ouvi</button>
+        <button id="not-heard" class="btn btn-no">❌ Não ouvi</button>
       </div>
     </section>
+
+    <!-- Pop-up de etapas -->
+    <div id="step-popup" class="popup">
+      <div class="popup-content">
+        <p id="popup-text">Etapa 1 de 5</p>
+      </div>
+    </div>
 
     <!-- Resultado final -->
     <section id="result-section" style="display: none;">
       <h2>Resultado</h2>
       <p id="result-text"></p>
-      <button onclick="location.reload()">Refazer teste</button>
+      <div class="result-buttons">
+        <button id="start-test" class="btn btn-primary" onclick="location.reload()">🔄 Refazer teste</button>
+        <a href="index.html" class="btn btn-secondary">🏠 Voltar à tela inicial</a>
+      </div>
     </section>
   </main>
 
